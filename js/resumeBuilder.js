@@ -101,7 +101,7 @@ bio.display = function() {
 
         for(i = 0; i < bio.skills.length; i++) {
             var formattedSkill = HTMLskills.replace("%data%", bio.skills[i]);
-            $("#skills").append(formattedSkill)};
+            $("#skills").append(formattedSkill);}
 
     }
 
@@ -166,7 +166,7 @@ projects.display = function() {
     if (projects.projects[i].images.length > 0) {
         for(j = 0; j < projects.projects[i].images.length; j++) {
             var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[i].images[j]);
-            $(".project-entry:last").append(formattedImage)};
+            $(".project-entry:last").append(formattedImage);}
         }
     }
 };
@@ -191,7 +191,7 @@ education.display = function() {
 
        var schoolMajor = HTMLschoolMajor.replace("%data%", education.schools[i].majors);
        $(".education-entry:last").append(schoolMajor);
-   };
+   }
         $("#education").append(HTMLonlineClasses);
         $("#education").append(HTMLschoolStart);
 
@@ -223,6 +223,6 @@ function inName(name) {
     finalName = out;
 
     return finalName;
-};
+}
 
 $("#main").append(internationalizeButton);
