@@ -188,7 +188,7 @@ education.display = function() {
         for(j = 0; j < education.schools[i].majors.length; j++) {
             var schoolMajor = HTMLschoolMajor.replace("%data%", education.schools[i].majors[j]);
             $(".education-entry:last").append(schoolMajor);}
-        };
+        }
        
    }
         $("#education").append(HTMLonlineClasses);
