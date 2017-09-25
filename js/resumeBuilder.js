@@ -57,7 +57,7 @@ var education = {
             "degree": "Honours Bachelor of Art",
             "dates": "September 2017–June 2019",
             "url": "www.gsa.ac.uk",
-            "majors": "Interaction Design"
+            "majors": ["Interaction Design"]
         },
         {
             "name": "University of Washington",
@@ -65,7 +65,7 @@ var education = {
             "degree": "Transferred",
             "dates": "September 2015–June 2017",
             "url": "uw.edu",
-            "majors": "Interaction Design"
+            "majors":["Interaction Design"]
         }
     ],
     "onlineCourses": [
@@ -106,22 +106,17 @@ bio.display = function() {
     }
 
     var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
-    $("#topContacts").append(formattedMobile);
-    $("#footerContacts").append(formattedMobile);
+    $("#topContacts,#footerContacts").append(formattedMobile);
 
-    var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email); $("#topContacts").append(formattedEmail);
-    $("#footerContacts").append(formattedEmail);
+    var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email); $("#topContacts,#footerContacts").append(formattedEmail);
 
     var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
-    $("#topContacts").append(formattedTwitter);
-    $("#footerContacts").append(formattedTwitter);
+    $("#topContacts,#footerContacts").append(formattedTwitter);
 
-    var formattedGit = HTMLgithub.replace("%data%", bio.contacts.github); $("#topContacts").append(formattedGit);
-    $("#footerContacts").append(formattedGit);
+    var formattedGit = HTMLgithub.replace("%data%", bio.contacts.github); $("#topContacts,#footerContacts").append(formattedGit);
 
     var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
-    $("#topContacts").append(formattedLocation);
-    $("#footerContacts").append(formattedLocation);
+    $("#topContacts,#footerContacts").append(formattedLocation);
 };
 
 bio.display();
@@ -189,21 +184,29 @@ education.display = function() {
        var schoolLocation = HTMLschoolLocation.replace("%data%", education.schools[i].location);
        $(".education-entry:last").append(schoolLocation);
 
-       var schoolMajor = HTMLschoolMajor.replace("%data%", education.schools[i].majors);
-       $(".education-entry:last").append(schoolMajor);
+       if (education.schools[i].majors.length > 0) {
+        for(j = 0; j < education.schools[i].majors.length; j++) {
+            var schoolMajor = HTMLschoolMajor.replace("%data%", education.schools[i].majors[j]);
+            $(".education-entry:last").append(schoolMajor);}
+        };
+       
    }
         $("#education").append(HTMLonlineClasses);
         $("#education").append(HTMLschoolStart);
 
-        var onlineTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[0].title);
-        var onlineSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[0].school);
+    for(i = 0; i < education.onlineCourses.length; i++) {
+        
+        var onlineTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[i].title);
+        var onlineSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[i].school);
         $(".education-entry:last").append(onlineTitle + onlineSchool);
 
-        var onlineDates = HTMLonlineDates.replace("%data%", education.onlineCourses[0].dates);
+        var onlineDates = HTMLonlineDates.replace("%data%", education.onlineCourses[i].dates);
         $(".education-entry:last").append(onlineDates);
 
-        var formattedURL = HTMLonlineURL.replace("%data%", education.onlineCourses[0].url);
+        var formattedURL = HTMLonlineURL.replace("%data%", education.onlineCourses[i].url);
         $(".education-entry:last").append(formattedURL);
+        
+    }
 };
 
 education.display();
